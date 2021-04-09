@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.vendedores
 
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -97,6 +98,7 @@ class VendedorTest : DescribeSpec({
 
       centro.agregarVendedor(viajante)
       centro.agregarVendedor(vendedorFijo)
+      centro.agregarVendedor(vendedorFijo)
 
       describe("esVendedorEstrella"){
         centro.esVendedorEstrella() == viajante
@@ -110,7 +112,9 @@ class VendedorTest : DescribeSpec({
         centro.esRobusto().shouldBeFalse()
       }
 
-
+      describe("esta el vendedor 2 veces"){
+        shouldThrowAny { centro.agregarVendedor(vendedorFijo) }
+      }
     }
 
 })

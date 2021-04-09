@@ -4,7 +4,10 @@ class CentroDistribucion() {
 
   val vendedores = mutableListOf<Vendedor>()
 
-  fun agregarVendedor(vendedor:Vendedor){ vendedores.add(vendedor)}
+  fun agregarVendedor(vendedor:Vendedor){
+     check(vendedores.contains(vendedor)){"El vendedor ya esta registrado"}
+    vendedores.add((vendedor))
+    }
 
   fun esVendedorEstrella() = vendedores.maxBy{v -> v.puntajeCertificaciones()}
 
